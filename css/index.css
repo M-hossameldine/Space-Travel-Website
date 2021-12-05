@@ -1,5 +1,6 @@
 /* ----------------------- */
 /* Custom Properties */
+/* ----------------------- */
 :root {
   /* Color vlues are prefered to be in HSL or RGB, because these forms allow us to apply calculation on the values and generate new version of them
   hsl( var(--light) / 0.2) ) this equals hsla with alph 0.2 
@@ -23,7 +24,6 @@
   --ff-sans-cond: "Barlow Condensed", sans-serif;
   --ff-sans-normal: "Barlow", sans-serif;
 }
-/* ----------------------- */
 /* ----------------------- */
 /* Reset                   */
 /* ----------------------- */
@@ -111,6 +111,14 @@ select {
   gap: var(--gap, 1rem);
 }
 
+/* for this project, we only need one spacing class .. another apporache is to have specific classes p-1, p-2, ... */
+/* .flow > * + * {} */ /* (has no spcificiy) */
+/* .flow > *:not(:first-child) {} */ /* (psuedo classes have specificiy) */
+/* "where" selector does not add any specificiy */
+.flow > *:where(:not(:first-child())) {
+  margin-top: var(--flow-space, 1rem);
+}
+
 .container {
   padding-inline: 2em;
   margin-inline: auto;
@@ -129,7 +137,7 @@ select {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: polygon(0 0, 0 0, 0 0, 0 0);
   white-space: nowrap; /* added line */
   border: 0;
 }
@@ -171,3 +179,15 @@ select {
 .fs-600 {
   line-height: 1.1;
 }
+
+.numbered-title {
+  font-family: var(--ff-sans-cond);
+  font-size: var(--fs-500);
+  letter-spacing: 4.72px;
+  text-transform: uppercase;
+}
+
+.numbered-title span {
+  color: hsl( var(--clr-white) / 0.25);
+}
+
